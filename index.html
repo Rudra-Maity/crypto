@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-size: 101% !important;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #1a1d26;
+            color: #fff;
+            margin: 0;
+            padding: 15px;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: #4fd1c5;
+            font-size: clamp(20px, 4vw, 24px);
+            font-weight: bold;
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            background-color: #2d3748;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: clamp(12px, 2vw, 14px);
+            white-space: nowrap;
+        }
+
+        .best-price {
+            text-align: center;
+            margin: 30px auto;
+            max-width: 600px;
+        }
+
+        .price-label {
+            color: #718096;
+            font-size: clamp(12px, 2vw, 14px);
+            margin-bottom: 5px;
+        }
+
+        .main-price {
+            font-size: clamp(24px, 6vw, 36px);
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .time-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: clamp(15px, 3vw, 40px);
+            margin: 30px auto;
+            max-width: 800px;
+            padding: 0 10px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            color: #4fd1c5;
+            font-size: clamp(14px, 3vw, 18px);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #718096;
+            font-size: clamp(10px, 2vw, 12px);
+            margin-top: 4px;
+        }
+
+        .price-table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .price-table {
+            width: 100%;
+            min-width: 750px;
+            border-collapse: collapse;
+        }
+
+        .price-table th {
+            color: #718096;
+            font-weight: normal;
+            text-align: left;
+            padding: 12px;
+            font-size: clamp(12px, 2vw, 14px);
+            white-space: nowrap;
+        }
+
+        .price-table td {
+            padding: 12px;
+            border-top: 1px solid #2d3748;
+            font-size: clamp(12px, 2vw, 14px);
+            white-space: nowrap;
+        }
+
+        .platform {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .platform-icon {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            background-color: #4fd1c5;
+            border-radius: 50%;
+        }
+
+        .difference-positive {
+            color: #48bb78;
+        }
+
+        .difference-negative {
+            color: #f56565;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .controls {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .price-table th, 
+            .price-table td {
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .time-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .button {
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">HODLINFO</div>
+        <div class="controls">
+            <button class="button">INR</button>
+            <button class="button">BTC</button>
+            <button class="button">BUY BTC</button>
+        </div>
+    </div>
+
+    <div class="best-price">
+        <div class="price-label">Best Price to Trade</div>
+        <div class="main-price">₹ 26,56,110</div>
+        <div class="price-label">Average BTC/INR net price including commission</div>
+    </div>
+
+    <div class="time-stats">
+        <div class="stat">
+            <div class="stat-value">0.1 %</div>
+            <div class="stat-label">5 Mins</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">0.96 %</div>
+            <div class="stat-label">1 Hour</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">2.73 %</div>
+            <div class="stat-label">1 Day</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">7.51 %</div>
+            <div class="stat-label">7 Days</div>
+        </div>
+    </div>
+
+    <div class="price-table-container">
+        <table class="price-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Platform</th>
+                    <th>Last Traded Price</th>
+                    <th>Buy / Sell Price</th>
+                    <th>Difference</th>
+                    <th>Savings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <div class="platform">
+                            <div class="platform-icon"></div>
+                            WazirX
+                        </div>
+                    </td>
+                    <td>₹ 25,72,612</td>
+                    <td>₹ 25,72,610 / ₹ 25,72,612</td>
+                    <td class="difference-negative">-3.14 %</td>
+                    <td class="difference-negative">▼ ₹ 83,498</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>
+                        <div class="platform">
+                            <div class="platform-icon"></div>
+                            Bitbns
+                        </div>
+                    </td>
+                    <td>₹ 28,83,906</td>
+                    <td>₹ 28,55,164 / ₹ 28,82,157</td>
+                    <td class="difference-positive">8.58 %</td>
+                    <td class="difference-positive">▲ ₹ 2,27,796</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function fetchAndDisplayData() {
+            try {
+                const response = await fetch('/api/tickers');
+                const data = await response.json();
+                
+                const tableBody = document.querySelector('.price-table tbody');
+                tableBody.innerHTML = '';
+                
+                let i = 1;
+                data.forEach((ticker) => {
+                    const row = document.createElement('tr');
+                    
+                    row.innerHTML = `
+                        <td>${i}</td>
+                        <td>
+                            <div class="platform">
+                                <div class="platform-icon"></div>
+                                ${ticker.platform}
+                            </div>
+                        </td>
+                        <td>₹ ${ticker.last}</td>
+                        <td>₹ ${ticker.buy} / ₹ ${ticker.sell}</td>
+                        <td class="${ticker.difference >= 0 ? 'difference-positive' : 'difference-negative'}">
+                            ${ticker.difference >= 0 ? '▲' : '▼'} ${Math.abs(ticker.difference)} %
+                        </td>
+                        <td class="${ticker.savings >= 0 ? 'difference-positive' : 'difference-negative'}">
+                            ${ticker.savings >= 0 ? '▲' : '▼'} ₹ ${Math.abs(ticker.savings).toLocaleString()}
+                        </td>
+                    `;
+                    
+                    tableBody.appendChild(row);
+                    i++;
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        fetchAndDisplayData();
+    </script>
+</body>
+</html>
